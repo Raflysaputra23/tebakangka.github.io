@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// ALERT
+		alert('Selamat datang diwebsite kami');
+		let main = confirm('Apakah anda bersedia ingin bermain tebak angka');
+		let kesempatan = 3;
+		let point = 0;
+		if (localStorage.getItem('point') == null) {
+			localStorage.setItem('point', point)
+		} else {
+			point = parseInt(localStorage.getItem('point'))
+
+		}
+		
+		
+
+		while(main) {
+			// ANGKA RANDOM COMPUTER
+			let comp = Math.floor(Math.random() * 10) + 1;
+			let coba = true;
+			
+
+			while(coba) {
+			alert('Oke coba anda tebak angka 1-10 \nAnda hanya memiliki '+ kesempatan +' kesempatan saja dan point anda '+ point)
+			let user = prompt('Mulai tebak angka');
+
+			if (comp == user) {
+				alert('Mantap tebakan anda benar angka yang dicari adalah : '+comp);
+				kesempatan = 3;
+				point += 10;
+				localStorage.setItem('point', point);
+				coba = confirm('Apakah anda ingin bermain lagi ?');
+				if (coba == false) {
+					main = false
+				} else {
+					coba = false
+					main = true
+				}
+			} else if(comp != user){
+				if (user > comp) {
+					alert('Maaf tebakan anda terlalu tinggi')
+					kesempatan -= 1;
+				} else {
+					alert('Maaf tebakan anda terlalu rendah')
+					kesempatan -= 1;
+				}	
+			} 
+			if(kesempatan == 0) {
+				alert('Maaf anda kalah angka yang dicari adalah '+ comp)
+				kesempatan = 3;
+				main = confirm('Apakah anda ingin bermain lagi ?')
+				coba = false;
+			}
+			}
+		}
+
+		
+		
+
+
+	</script>
+</body>
+</html>
